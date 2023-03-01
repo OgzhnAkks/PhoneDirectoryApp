@@ -9,7 +9,6 @@ namespace PhoneDirectory.Entity.Services.Models.Entity
         public string Name { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public string Firm { get; set; } = string.Empty;
-        public short Active { get; set; }
         public ContactInfo? ContactInfo { get; set; }
     }
 }

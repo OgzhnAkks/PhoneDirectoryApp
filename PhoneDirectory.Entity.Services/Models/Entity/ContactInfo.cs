@@ -9,6 +9,5 @@ namespace PhoneDirectory.Entity.Services.Models.Entity
         public string PhoneNumber { get; set; } = string.Empty;
         public string EmailAddress { get; set; } = string.Empty;
         public char? Location { get; set; }
-        public short? Active { get; set; }
     }
 }
