@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PhoneDirectory.DataAccess.Services.Contexts;
 
@@ -10,9 +11,11 @@ using PhoneDirectory.DataAccess.Services.Contexts;
 namespace PhoneDirectory.DataAccess.Services.Migrations
 {
     [DbContext(typeof(PersonContext))]
-    partial class PersonContextModelSnapshot : ModelSnapshot
+    [Migration("20230302002525_DbTableUpdateColmn_1")]
+    partial class DbTableUpdateColmn_1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,9 +51,6 @@ namespace PhoneDirectory.DataAccess.Services.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PersonId")
-                        .IsUnique();
-
                     b.ToTable("ContactInfo", "contact");
                 });
 
@@ -64,6 +64,9 @@ namespace PhoneDirectory.DataAccess.Services.Migrations
 
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
+
+                    b.Property<int>("ContactInfoId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Firm")
                         .IsRequired()
@@ -80,20 +83,6 @@ namespace PhoneDirectory.DataAccess.Services.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Person", "person");
-                });
-
-            modelBuilder.Entity("PhoneDirectory.Entity.Services.Models.Entity.ContactInfo", b =>
-                {
-                    b.HasOne("PhoneDirectory.Entity.Services.Models.Entity.Person", null)
-                        .WithOne("ContactInfo")
-                        .HasForeignKey("PhoneDirectory.Entity.Services.Models.Entity.ContactInfo", "PersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("PhoneDirectory.Entity.Services.Models.Entity.Person", b =>
-                {
-                    b.Navigation("ContactInfo");
                 });
 #pragma warning restore 612, 618
         }

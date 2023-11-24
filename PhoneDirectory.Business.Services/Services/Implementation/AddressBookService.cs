@@ -4,15 +4,18 @@ using DL = PhoneDirectory.DataAccess.Services.Repositores.Abstract;
 using PhoneDirectory.Entity.Services.Models.Dto;
 using PhoneDirectory.Entity.Services.Models.Entity;
 using PhoneDirectory.Business.Services.Utilities;
+using PhoneDirectory.DataAccess.Services.Repositores.Implementation;
 
 namespace PhoneDirectory.Business.Services.Services.Implementation
 {
-    public class AddressBookRepository : IAddressBookRepository
+    public class AddressBookService : IAddressBookService
     {
         private readonly DL::IAddressBookRepository _addressBookRepository;
         private readonly IMapper _mapper;
 
-        public AddressBookRepository(DL::IAddressBookRepository addressBookRepository, IMapper mapper)
+
+        // Depenctiy Injection
+        public AddressBookService(DL::IAddressBookRepository addressBookRepository, IMapper mapper)
         {
             _addressBookRepository = addressBookRepository;
             _mapper = mapper;

@@ -1,4 +1,5 @@
 using PhoneDirectory.DataAccess.Services.IoC;
+using PhoneDirectory.Business.Services.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.DataAccessDependencies(builder.Configuration);
+builder.Services.BusinessDependencies();
 builder.Services.AddCors();
 builder.Services.AddSwaggerGen();
 
@@ -25,5 +27,9 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
