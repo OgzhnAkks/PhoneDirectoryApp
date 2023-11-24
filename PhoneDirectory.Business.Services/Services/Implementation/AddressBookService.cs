@@ -4,7 +4,6 @@ using DL = PhoneDirectory.DataAccess.Services.Repositores.Abstract;
 using PhoneDirectory.Entity.Services.Models.Dto;
 using PhoneDirectory.Entity.Services.Models.Entity;
 using PhoneDirectory.Business.Services.Utilities;
-using PhoneDirectory.DataAccess.Services.Repositores.Implementation;
 
 namespace PhoneDirectory.Business.Services.Services.Implementation
 {

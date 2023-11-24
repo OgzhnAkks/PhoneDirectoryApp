@@ -1,12 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PhoneDirectory.DataAccess.Services.Contexts;
 using PhoneDirectory.DataAccess.Services.Repositores.Abstract;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PhoneDirectory.DataAccess.Services.Repositores.Implementation
 {
