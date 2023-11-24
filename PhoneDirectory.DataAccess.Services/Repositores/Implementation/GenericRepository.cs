@@ -40,12 +40,12 @@ namespace PhoneDirectory.DataAccess.Services.Repositores.Implementation
             return await _personContext.SaveChangesAsync();
         }
 
-        public async Task<TEntity> Get(Expression<Func<TEntity, bool>> filter = null)
+        public async Task<TEntity> Get(Expression<Func<TEntity, bool>>? filter = null)
         {
             return await _personContext.Set<TEntity>().AsNoTracking().FirstOrDefaultAsync(filter);
         }
 
-        public async Task<List<TEntity>> GetList(Expression<Func<TEntity, bool>> filter = null)
+        public async Task<List<TEntity>> GetList(Expression<Func<TEntity, bool>>? filter = null)
         {
             return await (filter == null ?
                    _personContext.Set<TEntity>().ToListAsync() :
