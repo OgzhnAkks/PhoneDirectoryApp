@@ -9,6 +9,7 @@ namespace PhoneDirectory.Business.Services.Services.Implementation
 {
     public class AddressBookService : IAddressBookService
     {
+        // Fields
         private readonly DL::IAddressBookRepository _addressBookRepository;
         private readonly IMapper _mapper;
 
@@ -20,6 +21,7 @@ namespace PhoneDirectory.Business.Services.Services.Implementation
             _mapper = mapper;
         }
 
+        // Methods.
         public async Task<PersonDto> AddPerson(PersonDto personDto)
         {
             var personValue = await _addressBookRepository.Add(_mapper.Map<Person>(personDto));
