@@ -4,8 +4,8 @@ namespace PhoneDirectory.DataAccess.Services.Repositores.Abstract
 {
     public interface IGenericRepository<T> where T : class, new()
     {
-        Task<T> Get(Expression<Func<T, bool>> filter = null);
-        Task<List<T>> GetList(Expression<Func<T, bool>> filter = null);
+        Task<T?> Get(Expression<Func<T, bool>> filter);
+        Task<List<T>> GetList(Expression<Func<T, bool>>? filter = null);
         Task<T> Add(T entity);
         Task<T> Update(T entity);
         Task<int> Delete(T entity);
