@@ -39,22 +39,24 @@ namespace PhoneDirectoryApp.Controllers
 
         [HttpPost]
         [Route("CreateContact")]
-        public async Task<IActionResult> AddPerson(PersonDto personDto)
+        public async Task<IActionResult> AddPerson(CreatePersonDto personDto)
         {
             try
             {
-                var resultJsonInfo = JsonSerializer.Serialize(personDto);
+                _logger.LogInformation("AddPerson request received for {Name}", personDto.Name);
 
-                _logger.LogInformation($"Added registration information - Json Info : {resultJsonInfo}");
+                var result = await _addressBookService.AddPerson(personDto);
 
-                return Ok(await _addressBookService.AddPerson(personDto));
+                return Ok(result);
 
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                _logger.LogError($"An error occurred during the request - {exception}. Service info: {MB.GetCurrentMethod()?.ReflectedType?.FullName} ");
+                _logger.LogError(ex,
+                    "Error in AddPerson. Method: {Method}",
+                     nameof(AddPerson));
 
-                return BadRequest("Something went wrong");
+                return StatusCode(500, "Internal server error");
             }
         }
     }

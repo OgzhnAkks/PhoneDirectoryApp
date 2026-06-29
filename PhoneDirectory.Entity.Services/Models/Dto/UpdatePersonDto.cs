@@ -1,8 +1,12 @@
-﻿using PhoneDirectory.Entity.Services.Models.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace PhoneDirectory.Entity.Services.Models.Dto
 {
-    public class PersonDto
+    public class UpdatePersonDto
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;

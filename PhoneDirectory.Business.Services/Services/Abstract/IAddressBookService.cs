@@ -4,8 +4,8 @@ namespace PhoneDirectory.Business.Services.Services.Abstract
 {
     public interface IAddressBookService
     {
-        Task<PersonDto> AddPerson(PersonDto personDto);
-        Task<PersonDto> UpdatePerson(PersonDto personDto);
+        Task<PersonDto> AddPerson(CreatePersonDto personDto);
+        Task<PersonDto> UpdatePerson(UpdatePersonDto personDto);
         Task DeletePerson(int id);
         Task<PersonDto> GetPerson(int id);
         Task<List<PersonDto>> GetPersons();

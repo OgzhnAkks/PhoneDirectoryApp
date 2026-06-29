@@ -22,7 +22,7 @@ namespace PhoneDirectory.Business.Services.Services.Implementation
         }
 
         // Methods.
-        public async Task<PersonDto> AddPerson(PersonDto personDto)
+        public async Task<PersonDto> AddPerson(CreatePersonDto personDto)
         {
             var personValue = await _addressBookRepository.Add(_mapper.Map<Person>(personDto));
 
@@ -62,7 +62,7 @@ namespace PhoneDirectory.Business.Services.Services.Implementation
 
         }
 
-        public async Task<PersonDto> UpdatePerson(PersonDto personDto)
+        public async Task<PersonDto> UpdatePerson(UpdatePersonDto personDto)
         {
             var person = await _addressBookRepository.Get(x => x.Id == personDto.Id);
 
