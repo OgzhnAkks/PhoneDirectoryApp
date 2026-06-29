@@ -3,12 +3,14 @@
 namespace PhoneDirectory.Entity.Services.Models.Entity
 {
     [Table("Person", Schema = "person")]
-    public class Person
+    public class Person : BaseEntity
     {
-        public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public string Firm { get; set; } = string.Empty;
-        public bool Active { get; set; }
+
+        public bool IsActive { get; set; } = true;
+
+        public ICollection<ContactInfo> ContactInfos { get; set; } = new List<ContactInfo>();
     }
 }

@@ -12,8 +12,8 @@ using PhoneDirectory.DataAccess.Services.Contexts;
 namespace PhoneDirectory.DataAccess.Services.Migrations
 {
     [DbContext(typeof(PersonContext))]
-    [Migration("20230228221530_CreateTableMigraiton_1")]
-    partial class CreateTableMigraiton_1
+    [Migration("20260628071635_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,39 +33,34 @@ namespace PhoneDirectory.DataAccess.Services.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("EmailAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("LocationId")
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PersonId")
                         .HasColumnType("int");
 
-                    b.Property<string>("PhoneNuber")
+                    b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("LocationId");
+                    b.HasIndex("PersonId");
 
                     b.ToTable("ContactInfo", "contact");
-                });
-
-            modelBuilder.Entity("PhoneDirectory.Entity.Services.Models.Entity.Location", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Location", "location");
                 });
 
             modelBuilder.Entity("PhoneDirectory.Entity.Services.Models.Entity.Person", b =>
@@ -76,12 +71,15 @@ namespace PhoneDirectory.DataAccess.Services.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ContactInfoId")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Firm")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -91,29 +89,28 @@ namespace PhoneDirectory.DataAccess.Services.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
-                    b.HasIndex("ContactInfoId");
+                    b.HasKey("Id");
 
                     b.ToTable("Person", "person");
                 });
 
             modelBuilder.Entity("PhoneDirectory.Entity.Services.Models.Entity.ContactInfo", b =>
                 {
-                    b.HasOne("PhoneDirectory.Entity.Services.Models.Entity.Location", "Location")
-                        .WithMany()
-                        .HasForeignKey("LocationId");
+                    b.HasOne("PhoneDirectory.Entity.Services.Models.Entity.Person", "Person")
+                        .WithMany("ContactInfos")
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Location");
+                    b.Navigation("Person");
                 });
 
             modelBuilder.Entity("PhoneDirectory.Entity.Services.Models.Entity.Person", b =>
                 {
-                    b.HasOne("PhoneDirectory.Entity.Services.Models.Entity.ContactInfo", "ContactInfo")
-                        .WithMany()
-                        .HasForeignKey("ContactInfoId");
-
-                    b.Navigation("ContactInfo");
+                    b.Navigation("ContactInfos");
                 });
 #pragma warning restore 612, 618
         }
