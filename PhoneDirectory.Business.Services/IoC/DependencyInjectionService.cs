@@ -10,7 +10,7 @@ namespace PhoneDirectory.Business.Services.IoC
     {
         public static void BusinessDependencies(this IServiceCollection services)
         {
-            services.AddTransient<IAddressBookService, AddressBookService>();
+            services.AddTransient<IPersonService, PersonService>();
             services.AddAutoMapper(typeof(AutoMapperProfile));
         }
     }

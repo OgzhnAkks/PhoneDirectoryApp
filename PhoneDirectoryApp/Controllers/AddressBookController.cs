@@ -12,9 +12,9 @@ namespace PhoneDirectoryApp.Controllers
     [Route("api/[controller]")]
     public class AddressBookController : ControllerBase
     {
-        private readonly IAddressBookService _addressBookService;
+        private readonly IPersonService _addressBookService;
         private readonly ILogger<AddressBookController> _logger;
-        public AddressBookController(IAddressBookService addressBookService, ILogger<AddressBookController> logger)
+        public AddressBookController(IPersonService addressBookService, ILogger<AddressBookController> logger)
         {
             _addressBookService = addressBookService;
             _logger = logger;
