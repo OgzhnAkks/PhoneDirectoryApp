@@ -2,7 +2,7 @@
 
 namespace PhoneDirectory.Business.Services.Services.Abstract
 {
-    public interface IAddressBookService
+    public interface IPersonService
     {
         Task<PersonDto> AddPerson(CreatePersonDto personDto);
         Task<PersonDto> UpdatePerson(UpdatePersonDto personDto);

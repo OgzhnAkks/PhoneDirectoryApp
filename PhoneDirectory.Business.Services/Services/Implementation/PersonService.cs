@@ -7,7 +7,7 @@ using PhoneDirectory.Business.Services.Utilities;
 
 namespace PhoneDirectory.Business.Services.Services.Implementation
 {
-    public class AddressBookService : IAddressBookService
+    public class PersonService : IPersonService
     {
         // Fields
         private readonly DL::IAddressBookRepository _addressBookRepository;
@@ -15,7 +15,7 @@ namespace PhoneDirectory.Business.Services.Services.Implementation
 
 
         // Depenctiy Injection
-        public AddressBookService(DL::IAddressBookRepository addressBookRepository, IMapper mapper)
+        public PersonService(DL::IAddressBookRepository addressBookRepository, IMapper mapper)
         {
             _addressBookRepository = addressBookRepository;
             _mapper = mapper;
